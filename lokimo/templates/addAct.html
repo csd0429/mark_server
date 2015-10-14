@@ -1,0 +1,265 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>UMEDITORdemo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/static/UEditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="/static/UEditor/third-party/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/UEditor/umeditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/UEditor/umeditor.min.js"></script>
+    <script type="text/javascript" src="/static/UEditor/lang/zh-cn/zh-cn.js"></script>
+    <style type="text/css">
+        h1 {
+            font-family: "微软雅黑";
+            font-weight: normal;
+        }
+
+        .btn {
+            display: inline-block;
+            *display: inline;
+            padding: 4px 12px;
+            margin-bottom: 0;
+            *margin-left: .3em;
+            font-size: 14px;
+            line-height: 20px;
+            color: #333333;
+            text-align: center;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+            vertical-align: middle;
+            cursor: pointer;
+            background-color: #f5f5f5;
+            *background-color: #e6e6e6;
+            background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+            background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+            background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+            background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+            background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+            background-repeat: repeat-x;
+            border: 1px solid #cccccc;
+            *border: 0;
+            border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+            border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+            border-bottom-color: #b3b3b3;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
+            filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+            *zoom: 1;
+            -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+            -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn:hover,
+        .btn:focus,
+        .btn:active,
+        .btn.active,
+        .btn.disabled,
+        .btn[disabled] {
+            color: #333333;
+            background-color: #e6e6e6;
+            *background-color: #d9d9d9;
+        }
+
+        .btn:active,
+        .btn.active {
+            background-color: #cccccc \9;
+        }
+
+        .btn:first-child {
+            *margin-left: 0;
+        }
+
+        .btn:hover,
+        .btn:focus {
+            color: #333333;
+            text-decoration: none;
+            background-position: 0 -15px;
+            -webkit-transition: background-position 0.1s linear;
+            -moz-transition: background-position 0.1s linear;
+            -o-transition: background-position 0.1s linear;
+            transition: background-position 0.1s linear;
+        }
+
+        .btn:focus {
+            outline: thin dotted #333;
+            outline: 5px auto -webkit-focus-ring-color;
+            outline-offset: -2px;
+        }
+
+        .btn.active,
+        .btn:active {
+            background-image: none;
+            outline: 0;
+            -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+            -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn.disabled,
+        .btn[disabled] {
+            cursor: default;
+            background-image: none;
+            opacity: 0.65;
+            filter: alpha(opacity=65);
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+        }
+
+        body {
+            font-size: 80%;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .hero {
+            margin: 0 auto;
+            background: url("/static/images/find-an-agent-hero.png");
+            background-size: cover;
+            height: 600px;
+{#            color: white;#}
+        }
+
+        /*img{*/
+        /*float:left;*/
+        /*padding-left:5em;*/
+        /*}*/
+
+        header ul {
+            float: right;
+        }
+
+        li:last-child {
+
+            border: 1px solid white;
+            border-radius: 2px 2px 2px 2px;
+            margin-right: 6em;
+        }
+
+        .hero h1 {
+
+            clear: both;
+            font-size: 3.5em;
+            padding-top: 2.5em;
+{#            color: white;#}
+
+        }
+
+        .hero h2 {
+            font-size: 2em;
+{#            color: #d9dada;#}
+
+        }
+
+        input[type=text] {
+            padding: 1em;
+            border: 0;
+            width: 25em;
+            opacity: 0.3;
+            border-radius: 10px 10px 10px 10px;
+
+        }
+
+        input[type=file] {
+            padding: 1em;
+            border: 0;
+            width: 20em;
+            opacity: 0.3;
+            border-radius: 2px 2px 2px 2px;
+            margin-top: 20px;
+            text-align: center;
+            color: white;
+
+        }
+
+        input[type=button] {
+            border-radius: 10px 10px 10px 10px;
+            background-color: #6cdcac;
+            padding: 1em;
+            border: 0;
+            width: 10em;
+            color: white;
+            text-transform: uppercase;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        input[type=datetime] {
+            padding: 1em;
+            border: 0;
+            width: 25em;
+            opacity: 0.3;
+            border-radius: 10px 10px 10px 10px;
+        }
+
+    </style>
+</head>
+<body>
+<section class="hero">
+   <header>
+       <ul></ul>
+   </header>
+<h1>后台编辑系统</h1>
+
+<form action="/addAct/" method="post" onsubmit="return checkAct(this)" enctype="multipart/form-data">
+    <input type="text" name="act_title" id="act_title" placeholder="输入标题"><br>
+    <textarea name="act_summary" id="act_summary" placeholder="输入概要"
+                 style="padding: 1em;opacity: 0.3;margin-top: 40px;width: 700px;height: 100px;border-radius: 10px 10px 10px 10px;"></textarea><br>
+    封面:<input type="file" name="act_cover" id="act_cover">
+    <!--style给定宽度可以影响编辑器的最终宽度-->
+    <script type="text/plain" id="myEditor" style="width:100%;height:340px;margin:0 auto;">
+    </script>
+    <input type="hidden" name="act_content" id="act_content">
+    活动时间：<input type="datetime-local" id="acttime"><br>
+    <input type="hidden" name="act_time" id="act_time"><br>
+    类型:
+    <select name="act_type" id="act_type" style="margin:2em;text-align: center;opacity: 0.3;">
+        <option value="0">openday</option>
+        <option value="1">hackday</option>
+    </select>
+    <input type="submit" value="提交">
+{#    <button class="btn" onclick="insertHtml()">插入给定的内容</button>#}
+    &nbsp;
+</form>
+</section>
+<script type="text/javascript">
+    //实例化编辑器
+    var um = UM.getEditor('myEditor');
+    function checkAct() {
+        var act_title = document.getElementById('act_title').value;
+        var act_summary = document.getElementById('act_summary').value;
+        var acttime = document.getElementById('acttime').value;
+        var act_type = document.getElementById('act_type').value;
+        acttime = acttime + ':00';
+        document.getElementById('act_time').value = acttime.replace(/T/, " ");
+        if (act_title.length == 0) {
+            return false;
+        } else if (act_summary.length == 0) {
+            return false;
+        } else if (act_time.length == 0) {
+            return false;
+        } else if (act_type.length == 0) {
+            return false;
+        } else if (um.getContent().length == 0) {
+            return false;
+        }
+        document.getElementById('act_content').value = um.getContent(); //使用editor.getContent()方法可以获得编辑器的内容
+{#        alert(document.getElementById('act_content').value);#}
+        alert("发布成功！");
+        return true;
+
+    }
+        function insertHtml() {
+        var value = prompt('插入html代码', '');
+        um.execCommand('insertHtml', value)
+    }
+</script>
+
+</body>
+</html>

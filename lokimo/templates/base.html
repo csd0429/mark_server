@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="The Page Description">
+    <style type="text/css">
+        @-ms-viewport {
+            width: device-width;
+        }
+    </style>
+
+    {% block headtitle %}
+    {% endblock %}
+    <link rel="icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="/static/css/layers.min.css" media="screen">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" media="screen">
+    <link rel="stylesheet" href="/static/css/style.css" media="screen">
+
+    <link rel="stylesheet" href="/static/css/max768px.css" media="only screen and (max-width: 48em) ">
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <link rel="apple-touch-icon" sizes="76x76" href="/static/img/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/static/img/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/static/img/apple-touch-icon-152x152.png">
+
+
+    <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.5.5.js"></script>
+    <script>
+        window._bd_share_config = {
+            "common": {
+                "bdSnsKey": {},
+                "bdText": "",
+                "bdMini": "2",
+                "bdMiniList": ["qzone", "tsina", "weixin", "tqq", "douban", "sqq"],
+                "bdPic": "",
+                "bdStyle": "1", "bdSize": "24"
+            },
+            "share": {}
+        };
+        with (document) {
+            (getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)
+        }
+
+    </script>
+    <style>
+        .content {
+            width: 100%;
+            margin: 0 auto;
+            background-color: white;
+        }
+
+        .share {
+            width: 100%;
+            height: 100px;
+        }
+
+        .login-header li {
+            text-decoration: none;
+            display: inline;
+            margin-left: 4%;
+        }
+
+        .login-header a {
+            text-decoration: none;
+        }
+
+        .login-header {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .overlay {
+            width: 60%;
+            margin-top: 15%;
+            margin-left: 20%;
+            height: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .ApplyOverlay {
+            width: 70%;
+            margin-top: 5%;
+            margin-left: 15%;
+            height: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        #apply {
+            border-top: 1px solid gray;
+            border-left: 1px solid gray;
+            border-right: 1px solid gray;
+            border-bottom: 1px solid gray;
+            border-radius: 10px;
+        }
+
+        .open-day {
+            border-top: 1px solid black;
+        }
+
+        .hack-day-card {
+            height: 60px;
+            border: 1px solid black;
+            border-radius: 10px;
+            margin-bottom: 2%;
+            list-style-type: none;
+            cursor: pointer;
+        }
+
+        .hack-day-border {
+            border: 2px solid blue;
+        }
+
+        .hack-day-card img {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            height: 100%;
+            width: 100%
+        }
+
+        #bdsharebuttonbox a {
+            clear: none;
+        }
+
+        .apply:hover {
+            background-color: #e45735;
+            color: white;
+        }
+
+        .apply {
+            color: black;
+            margin: 0;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .apply-card {
+            height: 60px;
+            border: 1px solid black;
+            border-radius: 10px;
+            margin-bottom: 2%;
+            list-style-type: none;
+            cursor: pointer;
+        }
+
+        .apply-card img {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            height: 100%;
+            width: 100%
+        }
+    </style>
+</head>
+<body class="page">
+<header role="banner" class="transparent light">
+    <div class="row">
+        <div class="nav-inner row-content buffer-left buffer-right even clear-after">
+            <div id="brand">
+
+                <div class="column twelve">
+                    {#                    <div class="column one"></div>#}
+                    <div class="column six">
+                        <img src="/static/images/logo.png" style="position: absolute;top:9px;left:35px;width:30px;">
+                        <h4 class="reset" style="position: absolute;top:13px;left:70px;">
+                            <!--<img src="img/logo.png" alt="logo">--><a href="">City</a></h4>
+                        <h5 class="reset" style="position: absolute;top:33px;left:70px;">
+                            <!--<img src="img/logo.png" alt="logo">--><a href="">by lokimo</a></h5>
+                    </div>
+                </div>
+            </div>
+            <a id="menu-toggle" href="#"><i class="fa fa-bars fa-lg"></i></a>
+            <nav>
+                <ul class="reset" role="navigation">
+                    <li class="menu-item">
+                        <a href="http://54.223.148.123:8000/invite/">试用</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="/blog/">Blog</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="/activity/?type=1">活动</a>
+                    </li>
+                    {% if user %}
+                        <li class="menu-item">
+                            <a style="color: #fa6f57">用户{{ user.tel }}</a>
+                            <ul class="sub-menu">
+                                <li><a href="/applyInfo/">已报名</a></li>
+                                <li><a href="">修改密码</a></li>
+                                <li><a href="/logout/">注销</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li class="menu-item">
+                            <a style="color: #fa6f57" onclick="window.location.href='/login/'">未登录</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            <!-- brand -->
+
+        </div>
+        <!-- row-content -->
+    </div>
+    <!-- row -->
+</header>
+
+
+{% block main %}
+
+{% endblock %}
+
+{% ifequal action "login" %}
+    <div id="imagelightbox-overlay" class="row">
+        <div id="login" class="overlay">
+            <div class="login-header">
+                <div class="column twelve">
+                    <span class="column three push-three" onclick="window.location.href='/login/'"
+                          style="border-right: 1px solid black;cursor: pointer;" id="loginTab">登录</span>
+                    <span class="column three push-two" onclick="window.location.href='/register/'"
+                          style="cursor: pointer;" id="regTab">注册</span>
+
+
+                </div>
+
+                {#                <ul>#}
+                {#                    <li class="denglu" style="border-right: 1px solid black;padding-right:15%; ">#}
+                {#                        <a href="#" onclick="window.location.href='/activity/?action=login'"><span#}
+                {#                                class="label">登录</span></a>#}
+                {#                    </li>#}
+                {#                    <li class="zhuce" style="padding-left:10%">#}
+                {#                        <a href="#" onclick="window.location.href='/activity/?action=register'"><span#}
+                {#                                class="label">注册</span></a>#}
+                {#                    </li>#}
+                {#                </ul>#}
+            </div>
+            <div style="height: 5px"></div>
+            <div class="register-content">
+                <div class="clear-after">
+                    <form class="comment-form" action="/login/" method="post">
+                        <div class="column ten push-one">
+                            <input class="name plain buffer " type="text" placeholder="手机号" name="tel">
+                            <input class="name plain buffer" type="password" placeholder="密码" name="password">
+                            <input type="hidden" value="1" name="type">
+
+                            <div class="login column twelve">
+                                <div class="column two push-three">
+                                    <input class="login-button1 plain buffer button red " type="submit"
+                                           style="text-align: center" value="登录">
+                                </div>
+                                <div class="column two push-two">
+                                    <input class="login-button2 plain buffer button black "
+                                           onclick="window.location.href='/cancel/'" type="button"
+                                           value="取消">
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- post-comment -->
+            </div>
+        </div>
+    </div>
+{% endifequal %}
+{% ifequal action "register" %}
+    <div id="imagelightbox-overlay" class="row">
+        <div id="register" class="overlay">
+
+            <div class="login-header">
+                <div class="column twelve">
+                    <span class="column three push-three" onclick="window.location.href='/login/'"
+                          style="border-right: 1px solid black;cursor: pointer;" id="loginTab">登录</span>
+                    <span class="column three push-two" onclick="window.location.href='/register/'"
+                          style="cursor: pointer;" id="regTab">注册</span>
+                </div>
+            </div>
+            <div style="height: 5px"></div>
+            <div class="login-content">
+                <div id="post-comment" class="clear-after">
+                    <form class="comment-form" action="/register/" method="post" id="myform">
+                        <div class="column ten push-one">
+                            <input class="name plain buffer " type="text" placeholder="手机号" name="tel" id="tel">
+                            <input class="name plain buffer" type="password" placeholder="密码" name="password1"
+                                   id="password1">
+                            <input class="name plain buffer" type="password" placeholder="请再输入一次密码" name="password2"
+                                   id="password2">
+                            <input type="hidden" value="1" name="type">
+
+                            <div class="column twelve">
+                                <div class="column seven">
+                                    <input class="name plain buffer" type="text" placeholder="验证码" id="inputCode">
+                                </div>
+                                <div class="column four">
+                                    <input class="name plain buffer button black" type="button" id="sendCode-button"
+                                           style="max-width:70%;width:70%;" value="获取验证码"
+                                           onclick="sendCode()">
+                                </div>
+                            </div>
+                            <div class="column twelve">
+                                <div class="column two push-three">
+                                    <input class="register-button1 plain buffer button red " type="button" value="注册"
+                                           style="max-width:75%;width:75%;" onclick="checkCode()">
+                                </div>
+                                <div class="column two push-two">
+
+
+                                    <input class="register-button2 plain buffer button black "
+                                           style="max-width:75%;width:75%;"
+                                           onclick="window.location.href='/cancel/'" type="button"
+                                           value="取消">
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- post-comment -->
+            </div>
+        </div>
+    </div>
+{% endifequal %}
+
+
+{% ifequal action 'apply' %}
+    <div id="imagelightbox-overlay" class="row">
+        <div id="apply" class="ApplyOverlay">
+            <div class="column twelve">
+                <img src="/static/images/hackday.jpg">
+
+                <div class="hack-day ">
+                    {% for hackday in hackdays %}
+                        <div class="hack-day-card column six" onclick="select('hackday','{{ hackday.act_id }}')"
+                             style="margin-right: 2%">
+
+                            {#                            <img class="column three" src="/static/images/002.jpg" style="width:70px;">#}
+                            <div style="position: relative;height:100%;">
+                                <img src="/static/images/002.jpg" style="width:70px;height:100%;">
+                            <span class="column eight"
+                                  style="font-size: 10px;position: absolute;top:12px;left:80px;">{{ hackday.act_title }}
+                            <br>{{ hackday.act_time }}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <input type="hidden" value="" id="hackday">
+
+                <div class="open-day ">
+                    <img src="/static/images/openday.jpg">
+
+                    {% for openday in opendays %}
+                        <div class="hack-day-card column six" onclick="select('openday','{{ openday.act_id }}')"
+                             style="margin-right: 2%">
+
+                            {#                            <img class="column three" src="/static/images/001.jpg">#}
+                            <div style="position: relative ;height:100%;">
+                                <img src="/static/images/001.jpg" style="width:70px;">
+
+                            <span class="column eight"
+                                  style="font-size: 10px;position: absolute;top:12px;left:80px;">{{ openday.act_title }}
+                            <br>{{ openday.act_time }}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <input type="hidden" value="" id="openday">
+            </div>
+
+
+            <input class="column two push-two plain buffer button red " type="button" value="报名" onclick="apply()">
+            <input class="column two push-two plain buffer button black " type="button" value="取消"
+                    {#                   onclick="window.location.href='/detail/?act_id={{ act.act_id }}'">#}
+                   onclick="history.back(-1);">
+
+
+            <div style="clear: both"></div>
+        </div>
+    </div>
+
+{% endifequal %}
+
+<!-- row -->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/plugins.js"></script>
+<script src="/static/js/beetle.js"></script>
+
+<script>
+    AV.initialize("r7x6zvcfaan1t00a5kxgwvco0jufd4myvdj18ttl0ucobe1o", "d964iljix4vmpiltq4ji8gralo5z88rpjrobscz1uh4q8z5i");
+
+    function sendCode() {
+        var tel = document.getElementById("tel").value;
+        var password1 = document.getElementById("password1").value;
+        var password2 = document.getElementById("password2").value;
+        var inputCode = document.getElementById("inputCode").value;
+
+        if (tel.length == 11) {
+            if (password1.length >= 6 && password1.length <= 16 && password2.length >= 6 && password2.length <= 16) {
+                if (password1 == password2) {
+                    AV.Cloud.requestSmsCode(tel).then(function () {
+                        document.getElementById("sendCode-button").disabled = true;
+                        alert("验证码发送成功!");
+                    }, function (err) {
+                        alert("验证码发送失败!请稍后再试.");
+                    });
+                } else {
+                    alert("密码不相同");
+                }
+            } else {
+                alert("密码长度不正确");
+            }
+        } else {
+            alert("手机输入有误");
+        }
+    }
+    function checkCode() {
+        var tel = document.getElementById("tel").value;
+        var inputCode = document.getElementById("inputCode").value;
+        AV.Cloud.verifySmsCode(inputCode, tel).then(function () {
+            alert("验证成功！");
+            document.getElementById("myform").submit();
+        }, function (err) {
+            {#            alert("验证失败！");#}
+            alert("失败");
+        });
+    }
+
+</script>
+<script>
+    $(".hack-day-card").click(function () {
+        $(this).toggleClass("hack-day-border");
+    });
+
+    function select(type, value) {
+        var opendayStatus = 'add';
+        var hackdayStatus = 'add';
+        if (type == 'openday') {
+            var openday = document.getElementById("openday").value.split(',');
+            if (openday.length > 1) {
+                for (var i = 0; i < openday.length - 1; i++) {
+                    if (value == openday[i]) {
+                        opendayStatus = 'delete';
+                        break;
+                    }
+                }
+                if (opendayStatus == 'add') {
+                    document.getElementById("openday").value += value + ",";
+                } else {
+
+                    document.getElementById("openday").value = "";
+                    for (var j = 0; j < openday.length - 1; j++) {
+                        if (value != openday[j]) {
+                            document.getElementById("openday").value += openday[j] + ",";
+                        }
+                    }
+                }
+            } else {
+                document.getElementById("openday").value += value + ",";
+            }
+
+        }
+
+        if (type == 'hackday') {
+            var hackday = document.getElementById("hackday").value.split(',');
+            if (hackday.length > 1) {
+                for (var x = 0; x < hackday.length - 1; x++) {
+                    if (value == hackday[x]) {
+                        hackdayStatus = 'delete';
+                        break;
+                    }
+                }
+                if (hackdayStatus == 'add') {
+                    document.getElementById("hackday").value += value + ",";
+                } else {
+
+                    document.getElementById("hackday").value = "";
+                    for (var y = 0; y < hackday.length - 1; y++) {
+                        if (value != hackday[y]) {
+                            document.getElementById("hackday").value += hackday[y] + ",";
+                        }
+                    }
+                }
+            } else {
+                document.getElementById("hackday").value += value + ",";
+            }
+
+        }
+
+    }
+    function apply() {
+        var openday = document.getElementById("openday").value;
+        var hackday = document.getElementById("hackday").value;
+        window.location.href = "/apply/?openday=" + openday + "&hackday=" + hackday;
+    }
+</script>
+
+</body>
+</html>

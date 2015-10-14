@@ -1,0 +1,146 @@
+
+
+{% extends 'base.html' %}
+{% block headtitle %}
+    <title>{{ act.act_title }}</title>
+{% endblock %}
+
+{% block main %}
+    <main role="main">
+        <!--<div id="intro-wrap" data-height="22.222">-->
+        <!--<div id="intro" class="preload darken">-->
+        <!--<div class="intro-item" style="background-image: url(http://placehold.it/1800x600/ddd/fff&text=Beetle%20image); width:80%;-->
+        <!--margin:0 auto; position:relative; left: -2px;">-->
+        <!--<div class="caption">-->
+        <!--<h2>标题</h2>-->
+        <!--</div>&lt;!&ndash; caption &ndash;&gt;-->
+        <!--<div class="photocaption">-->
+
+        <!--</div>&lt;!&ndash; photocaption &ndash;&gt;-->
+        <!--</div>-->
+        <!--</div>&lt;!&ndash; intro &ndash;&gt;-->
+        <!--</div>&lt;!&ndash; intro-wrap &ndash;&gt;-->
+        <div id="main" class="row">
+            <div class="row-content buffer-left buffer-right buffer-bottom">
+                <div class="content column twelve">
+                    {#                <img src="/static/images/{{ act.act_id }}.jpg" style="width: 100%;">#}
+                    <h1 style="text-align: center">{{ act.act_title }}</h1>
+
+                    <div class="">
+                        {% autoescape off %} {{ act.act_content }} {% endautoescape %}
+                    </div>
+
+                    <div class="share column twelve">
+
+                        {% ifequal likes.status 'dislike' %}
+                            <div id="like" class="column two grey" style="padding-left: 5px;">
+                                <i class="icon icon-heart" style="cursor: pointer"
+                                   onclick="window.location.href='/addLike/?act_id={{ act.act_id }}&tel={{ user.tel }}'"><span
+                                        style="font-size: 15px">{{ likes.count }}点赞</span></i>
+                            </div>
+
+                        {% else %}
+
+                            <div id="like" class="column two red" style="padding-left: 5px;">
+                                <i class="icon icon-heart" style="cursor: pointer"
+                                   onclick="window.location.href='/deleteLike/?act_id={{ act.act_id }}&tel={{ user.tel }}'"><span
+                                        style="font-size: 15px">{{ likes.count }}个赞</span></i>
+                            </div>
+                        {% endifequal %}
+
+                        <span id="bdsharebuttonbox" class="column three bdsharebuttonbox" style="left:50px;">
+                                <span style="float: left" class="transparent blue"> 分享到：</span>
+                                <a href="" class="bds_tsina" data-cmd="tsina" title="新浪微博"></a>
+                                <a href="" class="bds_weixin" data-cmd="weixin" title="微信"></a>
+                                <a href="" class="bds_douban" data-cmd="douban" title="豆瓣"></a>
+                            </span>
+                        {#                                <div id="bdsharebuttonbox" class="bdsharebuttonbox"#}
+                        {#                                     style="display: none;position: absolute;left:50px;top:-10px;">#}
+                        {#                                    <a href="" class="bds_more" data-cmd="more"></a>#}
+                        {#                                    <a href="" class="bds_tsina" data-cmd="tsina" title="新浪微博"></a>#}
+                        {#                                    <a href="" class="bds_weixin" data-cmd="weixin" title="微信"></a>#}
+                        {#                                    <a href="" class="bds_douban" data-cmd="douban" title="豆瓣"></a>#}
+                        {##}
+                        {#                                </div>#}
+
+                        <span class="column three push-three">
+
+                            {% ifequal act.status 'over' %}
+                                <a class="button transparent aqua">报名截止</a>
+                            {% endifequal %}
+                            {% ifequal act.status 'in' %}
+                                <a href="/detail/?act_id={{ act.act_id }}&action=apply"
+                                   class="button transparent aqua" id="applyBtn2">我要报名</a>
+
+
+                            {% endifequal %}
+                            {% ifequal act.status 'apply' %}
+                                <a class="button transparent aqua">已报名</a>
+                            {% endifequal %}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="content column twelve">
+                    <div class="comment-section" style="margin-top:20px;border-top: 1px solid gray;">
+                        {#                        <h3 id="comments">{{ coms.com_total }}条评论</h3>#}
+                        <ul class="comment-list plain">
+                            {% for com in coms %}
+                                <li class="comment">
+                                    <div class="single-comment">
+                                        <div class="comment-author">
+                                            <img src="/static/images/head/head_{{ com.com_head }}.jpg" class="avatar"
+                                                 alt="">
+                                            <cite><a href="#">{{ com.com_name }}</a></cite>
+                                            <span class="says">说:</span>
+                                        </div>
+                                        <!-- comment-author -->
+                                        <div class="comment-meta">
+                                            <time datetime="2013-03-23 19:58">{{ com.com_time }}</time>
+                                        </div>
+                                        <!-- comment-meta -->
+                                        <p>{{ com.com_content }}</p>
+                                    </div>
+                                    <!-- single-comment -->
+                                    <ul class="children plain">
+                                        <li class="comment">
+
+                                            <ul class="children plain">
+                                                <li class="comment">
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="content column twelve">
+                    <!-- comment-section -->
+                    <div id="post-comment" class="clear-after">
+                        <h3 id="reply-title">我要评论</h3>
+
+                        {% if user %}
+
+                            <form class="comment-form" action="/addComment/" method="post">
+                                <br>
+                                <input type="hidden" name="act_id" value="{{ act.act_id }}">
+                                <textarea class="plain buffer" placeholder="输入评论" name="com_content"></textarea>
+                                <input class="plain button red" type="submit" value="发表评论">
+                            </form>
+                        {% else %}
+                            <br>
+                            <p style="text-align: center">请<a href="/activity/?action=login">登录</a>后再评论。</p>
+                            <br>
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- post-comment -->
+            </div>
+        </div>
+
+    </main>
+    <!-- main -->
+{% endblock %}

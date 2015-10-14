@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="3170837409">
+    <data-source source="LOCAL" name="Django default" uuid="9287734f-4db3-486d-800f-a8ba2eac59ab">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://markdb.ctltwc1dor1y.rds.cn-north-1.amazonaws.com.cn:5432/markdb</jdbc-url>
+      <user-name>markuser</user-name>
+      <user-password>dfc7df9edfe8dfdfdfc4dfecdfccdfefdfdedfd3dfc4dfd9df93dfc9</user-password>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+

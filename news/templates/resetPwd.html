@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://v3.bootcss.com/examples/cover/ -->
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" href="http://v3.bootcss.com/favicon.ico">
+
+		<title>Cover Template for Bootstrap</title>
+
+		<!-- Bootstrap core CSS -->
+		<link href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		<link href="http://v3.bootcss.com/examples/cover/cover.css" rel="stylesheet">
+
+		<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+		<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+		<script src="../static/js/ie-emulation-modes-warning.js"></script>
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		<script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<div class="site-wrapper">
+			<div class="site-wrapper-inner">
+				<div class="cover-container">
+					<div class="masthead clearfix">
+						<div class="inner">
+							<h3 class="masthead-brand">Mark</h3>
+							<nav>
+								<ul class="nav masthead-nav">
+									<li class="active">
+										<a href="">Home</a>
+									</li>
+									<li>
+										<a href="">Features</a>
+									</li>
+									<li>
+										<a href="">Contact</a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+					<div class="inner cover row">
+						<form action="/user/resetPwd/" method="post">
+							<div class="col-sm-6 col-sm-offset-3">
+								<h2>用户：{{ user_id }}</h2>
+								<h1 class="cover-heading">重置密码</h1>
+								<div style="height: 50px"></div>
+								<input class="form-control" type="password" autofocus="" placeholder="Input New Password..." name="pwd_1"/>
+								<div style="height: 20px"></div>
+								<input class="form-control" type="password" autofocus="" placeholder="Input New Password Again..." name="pwd_2"/>
+								<div style="height: 20px"></div>
+                                <input type="hidden" value="18817354315" name="user_id">
+                                {% if error %}
+                                <h5 style="color: red">{{ error }}</h5>
+                                {% endif %}
+								<input class="btn btn-lg btn-default" type="submit" value="确定">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Bootstrap core JavaScript
+		================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script src="../static/js/jquery.min.js"></script>
+		<script src="../static/js/bootstrap.min.js"></script>
+		<script src="../static/js/docs.min.js"></script>
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		<script src="../static/js/ie10-viewport-bug-workaround.js"></script>
+	</body>
+</html>

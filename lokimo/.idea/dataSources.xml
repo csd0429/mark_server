@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="1026045205">
+    <data-source source="LOCAL" name="Django default" uuid="7aae76dc-eaad-4f7d-8677-e9e31a13494e">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://markdb.ctltwc1dor1y.rds.cn-north-1.amazonaws.com.cn:5432/lokimoDB</jdbc-url>
+      <user-name>markuser</user-name>
+      <user-password>dfc7df9edfe8dfdfdfc4dfecdfccdfefdfdedfd3dfc4dfd9df93dfc9</user-password>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+

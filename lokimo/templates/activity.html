@@ -1,0 +1,126 @@
+
+
+{% extends 'base.html' %}
+{% block headtitle %}
+    <title>lokimo - Home page</title>
+{% endblock %}
+
+{% block main %}
+
+    <main role="main">
+        <div id="main">
+
+            <section class="row section greyish">
+
+                <div class="row-content buffer even clear-after">
+
+                    <div class="timeline column four push-one">
+                        <div class="year">
+                            <time>classify</time>
+                            <div class="experience" style="height: 80px">
+                                <span class="circle"></span>
+
+                                <div class="experience-img">
+                                    <img style='width:40px;' src="/static/images/8_meitu_00.jpg" alt=""></div>
+                                <div class="experience-info clear-after" style="margin-top: 20px">
+                                    <a href="/activity/?type=0"><h5>OpenDay</h5></a>
+                                </div>
+                            </div>
+                            <div class="experience" style="height: 80px">
+                                <span class="circle"></span>
+
+                                <div class="experience-img"><img style='width:40px;'
+                                                                 src="/static/images/8_meitu_10.jpg"
+                                                                 alt=""></div>
+                                <div class="experience-info clear-after" style="margin-top: 20px">
+                                    <a href="/activity/?type=1"><h5>HackDay</h5></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- year -->
+
+                    </div>
+                    <div class="timeline-label column seven last">
+
+                        <div class="grid-items blog-section masonry-style preload">
+
+                            {% for activity in activities %}
+                                <article class="item column three" style="width:70%">
+
+                                    <figure><img
+                                            src="/static/images/{{ activity.act_id }}.jpg"
+                                            alt=""></figure>
+                                    <div class="blog-excerpt">
+                                        <div class="blog-excerpt-inner">
+                                            <h5 class="meta-post">
+                                                {{ activity.act_type }},
+                                                {{ activity.act_time }}</h5>
+
+                                            <h2>{{ activity.act_title }}</h2>
+
+                                            <p>
+                                                {{ activity.act_summary }}</p>
+                                        </div>
+                                        <div class="column twelve">
+
+                                            {#                                            <ul style="list-style:none;padding: 0">#}
+                                            {#                                                <li style="float:left;">#}
+                                            {#                                                    查看详情#}
+                                            {#                                                </li>#}
+                                            {#                                                <li style="float:left;">#}
+                                            {#                                                    报名截止#}
+                                            {#                                                </li>#}
+                                            {##}
+                                            {#                                            </ul>#}
+                                            <span class="column three"
+                                                  style="color: grey;cursor: pointer;margin-left: 2%" id="detailBtn"
+                                                  onclick="window.location.href='/detail/?act_id={{ activity.act_id }}'">
+                                                查看详情
+                                            </span>
+
+                                            {% ifequal activity.status 'over' %}
+                                                <span class="column three push-six " id="applyBtn"
+                                                      style="color: grey;cursor: pointer">
+                                                    报名截止
+                                                </span>
+                                            {% endifequal %}
+                                            {% ifequal activity.status 'in' %}
+                                                <span class="column three push-six" id="applyBtn"
+                                                      style="color: darkred;cursor: pointer"
+                                                      onclick="window.location.href='/activity/?type=1&action=apply'">
+                                                    我要报名
+                                                </span>
+                                            {% endifequal %}
+                                            {% ifequal activity.status 'apply' %}
+                                                <span class="column three push-six " id="applyBtn"
+                                                      style="color: grey;cursor: pointer">
+                                                    已报名
+                                                </span>
+                                            {% endifequal %}
+                                        </div>
+                                    </div>
+
+                                </article>
+                            {% endfor %}
+
+
+
+                            <div class="shuffle-sizer three"></div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

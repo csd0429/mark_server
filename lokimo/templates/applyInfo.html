@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <main role="main">
+
+        <div id="main" class="row">
+            <div class="row-content buffer-left buffer-right buffer-bottom clear-after">
+                <div class="column twelve">
+                    <div class="column two">
+                        <br>
+                        <article class="clear-after" style=";margin-top:10%;">
+
+                            {% ifequal type 'no' %}
+                                <p class="apply" onclick="window.location.href='/applyInfo/?type=no'"
+                                   style="text-align: center;background-color: #e45735;">未结束</p>
+                            {% else %}
+                                <p class="apply" onclick="window.location.href='/applyInfo/?type=no'"
+                                   style="text-align: center;">未结束</p>
+                            {% endifequal %}
+
+                            {% ifequal type 'end' %}
+                                <p class="apply" style="margin-bottom:0;text-align: center;background-color: #e45735;"
+                                   onclick="window.location.href='/applyInfo/?type=end'">已结束</p>
+                            {% else %}
+                                <p class="apply" style="margin-bottom:0;text-align: center;"
+                                   onclick="window.location.href='/applyInfo/?type=end'">已结束</p>
+                            {% endifequal %}
+                        </article>
+                    </div>
+                    <!-- column nine -->
+                    <div class="column nine">
+                        <img src="/static/images/hackday.jpg">
+
+                        <div class="hack-day ">
+                            {% for hackday in hackdays %}
+                                <div class="apply-card column six"
+                                     style="margin-right: 2%"
+                                     onclick="window.location.href='/detail/?act_id={{ hackday.act_id }}'">
+
+                                    {#                            <img class="column three" src="/static/images/002.jpg" style="width:70px;">#}
+                                    <div style="position: relative;height:100%;">
+                                        <img src="/static/images/002.jpg" style="width:70px;height:100%;">
+                            <span class="column eight"
+                                  style="font-size: 10px;position: absolute;top:12px;left:80px;">{{ hackday.act_title }}
+                            <br>{{ hackday.act_time }}</span>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <input type="hidden" value="" id="hackday">
+
+                        <div class="open-day ">
+                            <img src="/static/images/openday.jpg">
+
+                            {% for openday in opendays %}
+                                <div class="apply-card column six"
+                                     style="margin-right: 2%"
+                                     onclick="window.location.href='/detail/?act_id={{ hackday.act_id }}'">
+
+                                    {#                            <img class="column three" src="/static/images/001.jpg">#}
+                                    <div style="position: relative ;height:100%;">
+                                        <img src="/static/images/001.jpg" style="width:70px;">
+
+                            <span class="column eight"
+                                  style="font-size: 10px;position: absolute;top:12px;left:80px;">{{ openday.act_title }}
+                            <br>{{ openday.act_time }}</span>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <input type="hidden" value="" id="openday">
+                    </div>
+                </div>
+            </div>
+            <!-- row-content -->
+        </div>
+        <!-- row -->
+    </main>
+{% endblock %}
